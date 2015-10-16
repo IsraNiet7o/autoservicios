@@ -5,7 +5,10 @@ namespace Autoservicios\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Autoservicios\Http\Requests;
+use Autoservicios\Http\Requests\CategoryRequest;
 use Autoservicios\Http\Controllers\Controller;
+use Autoservicios\Entities\Category as Category;
+use Illuminate\Support\Str as Str;
 
 class CategoryController extends Controller
 {
@@ -14,6 +17,12 @@ class CategoryController extends Controller
      *
      * @return Response
      */
+    public function listing()
+    {
+        $categories = Category::all();
+        return response()->json($categories->toArray());
+    }
+
     public function index()
     {
         return view('backend.categories.category');
@@ -35,9 +44,25 @@ class CategoryController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //
+
+        if ($request->ajax()) {
+            $cat    = $request['category'];
+            $slug   = Str::slug($cat);
+            \DB::table('categories')->insert([
+                'category'  => $cat,
+                'header'    => $request['header'],
+                'descrip'   => $request['descrip'],
+                'slug'      => $slug,
+                'icono'     => $request['ico']    
+            ]);
+
+            
+            return response()->json([
+                'mensaje' => '<strong>Categoría</strong> agregada correctamente.'
+            ]);
+        }
     }
 
     /**
@@ -48,7 +73,11 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $cat = Category::find($id);
+
+        return response()->json(
+            $cat->toArray()
+        );
     }
 
     /**
@@ -59,7 +88,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cat = Category::find($id);
+
+        return response()->json(
+            $cat->toArray()
+        );
     }
 
     /**
@@ -69,9 +102,21 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        //
+        $namecat = $request['category'];
+        $slug    = Str::slug($namecat);
+        $cat = Category::find($id);
+        $cat->category  = $namecat;
+        $cat->header    = $request['header'];
+        $cat->descrip   = $request['descrip'];
+        $cat->icono     = $request['ico'];
+        $cat->slug      = $slug;
+        $cat->save();
+            
+        return response()->json([
+            'mensaje' => '<strong>Actualización</strong> realizada correctamente.' 
+        ]);
     }
 
     /**
@@ -80,8 +125,15 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy(Request $request, $id)
+    {   
+        $cat = Category::find($id);
+        $cat->delete();
+
+        $messaje = $cat->category . "fue eliminada.";
+        if ($request->ajax()) {
+            return response()->json($messaje);
+        }
+
     }
 }

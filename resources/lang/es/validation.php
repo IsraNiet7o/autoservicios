@@ -96,5 +96,16 @@ return [
     | of "email". This simply helps us make messages a little cleaner.
     |
     */
-    'attributes' => [],
+    'attributes' => [
+
+        'category'      => 'Categoría',
+        'header'        => 'Encabezado',
+        'descrip'       => 'Descripción',
+        'ico'           => 'Icono',
+        'title'         => 'Subcategoría',
+        'category_id'   => 'Categoría',
+        'descrip-ini'   => 'Descripción Principal',
+
+
+    ],
 ];

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Autoservicios\Http\Requests;
 use Autoservicios\Http\Controllers\Controller;
+use Autoservicios\Entities\Category;
 
 class ProceduresController extends Controller
 {
@@ -16,7 +17,8 @@ class ProceduresController extends Controller
      */
     public function index()
     {
-        return view('frontend.procedimientos');
+        $proces = Category::where('categories.id','=', '1')->first();
+        return view('frontend.procedimientos', compact('proces'));
     }
 
     /**

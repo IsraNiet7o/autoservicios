@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-xs-12 col-md-6">
         <h4 class="white-text">Autoservicios</h4>
-        <p class="cyan-light-text mono-regular">Autoservicios es portal de ayuda en línea. Con nosotros podrás solucionar tus problemas de configuración de impresión entre otros, con la ayuda de tutoriales sencillos.</p>
+        <p class="cyan-light-text mono-regular">Autoservicios es un portal de ayuda en línea. Con nosotros podrás solucionar tus problemas de configuración de impresión entre otros, con la ayuda de tutoriales sencillos.</p>
       </div>
       <div class="col-xs-12 col-md-3 text-right ">
         <ul class="ul-footer ">

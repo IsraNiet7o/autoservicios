@@ -13,6 +13,7 @@
 
   {!!Html::style('css/bootstrap.min.css')!!}
   {!!Html::style('css/dashboard.css')!!}
+  {!!Html::style('css/blog.css')!!}
   {!!Html::style('https://fonts.googleapis.com/icon?family=Material+Icons')!!}
   {!!Html::style('https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700')!!}
   {!!Html::style('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700')!!}
@@ -49,6 +50,7 @@
          $(function () {
            $('[data-toggle="tooltip"]').tooltip()
          });
+         
       });
    </script>
 

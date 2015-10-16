@@ -15,6 +15,12 @@
    <div class="row">
      <div class="col-sm-8 blog-main">
      <br>
+     <div class="row">
+      <div class="col-xs-12 text-center">
+      <br>
+        <img src="{!! asset('img/logo.png') !!}" alt="Ap Toner">
+      </div>
+     </div>
      <hr>
 		<div class="row">
         <div class="col-lg-6 text-center blog-main">
@@ -53,17 +59,11 @@
 			</div>
 			<div class="form-group">
 			   {!! Form::label('mensaje', 'Mensaje', ['class'=>'']) !!}
-			   <textarea class="form-control" rows="3" id="mensaje" placeholder="Mensaje" required></textarea>
+			   <textarea class="form-control" rows="3" name="mensaje" id="mensaje" placeholder="Mensaje" required></textarea>
 			</div>
 			  <button type="submit" class="btn btn-default"><i class="material-icons right">send</i>Enviar</button>
 		{!! Form::close() !!}
 
-		<div class="row">
-			<div class="col-xs-12 text-center">
-			<br>
-				<img src="{!! asset('img/logo.png') !!}" alt="Ap Toner">
-			</div>
-		</div>
 		</div>
 
      <div class="col-sm-3 col-sm-offset-1 blog-sidebar">

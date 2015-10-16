@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Autoservicios\Http\Requests;
 use Autoservicios\Http\Controllers\Controller;
+use Autoservicios\Entities\Category;
 
 class ServicesController extends Controller
 {
@@ -16,7 +17,8 @@ class ServicesController extends Controller
      */
     public function index()
     {
-        return view('frontend.servicios');
+        $servis = Category::find('2');
+        return view('frontend.servicios', compact('servis'));
     }
 
     /**

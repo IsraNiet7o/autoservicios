@@ -67,19 +67,19 @@
 		                <i class="material-icons large brown-text ">autorenew</i>
 		                <h2>Procesos</h2>
 		                <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus soluta laudantium labore culpa explicabo. Consequuntur sapiente id, necessitatibus ipsa. Excepturi.</p>
-		                <p><a class="btn btn-default" href="" role="button">Ir a Precesos &raquo;</a></p>
+		                <p><a class="btn btn-default" href="{{ route('procedures.index') }}" role="button">Ir a Precesos &raquo;</a></p>
 		              </div>
 		              <div class="col-xs-12 col-sm-6 col-md-4">
 		                <i class="material-icons large brown-text ">print</i>
 		                <h2>Servicios de Papelería</h2>
 		                <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus soluta laudantium labore culpa explicabo. Consequuntur sapiente id, necessitatibus ipsa. Excepturi.</p>
-		                <p><a class="btn btn-default" href="" role="button">Ir a Servicios &raquo;</a></p>
+		                <p><a class="btn btn-default" href="{{ route('services.index') }}" role="button">Ir a Servicios &raquo;</a></p>
 		              </div>
 		              <div class="col-xs-12 col-sm-6 col-md-4">
 		                <i class="material-icons large brown-text ">cloud_download</i>
 		                <h2>Drivers</h2>
 		                <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus soluta laudantium labore culpa explicabo. Consequuntur sapiente id, necessitatibus ipsa. Excepturi.</p>
-		                <p><a class="btn btn-default" href="#" role="button">Contactanos &raquo;</a></p>
+		                <p><a class="btn btn-default" href="{{ route('technical.index') }}" role="button">Contactanos &raquo;</a></p>
 		              </div>
 		            </div>
 		  

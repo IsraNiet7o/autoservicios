@@ -13,15 +13,26 @@
 .grey-text  			{ color: #727272; } 		  /*gris*/
 .divisor-color        	{ border-color: #B6B6B6; }    /*gris light*/
 
+.mred                   { background: #f44336 !important;}      /*red */
+.mred-text              { color: #f44336; }           /*red */
+
+
 a{color: #ffffff;transition: all 0.3s ease-out 0s;}
 a:focus, a:hover{color: #B2DFDB;}
+audio, iframe, img , video {max-width: 100%;}
 
 body {font-family: 'Roboto', "Helvetica Neue",Helvetica,Arial,sans-serif;}
 footer{padding-top: 1.5em;}
-
-audio, iframe, img , video {max-width: 100%;}
+hr.hr{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+textarea.arti{width: 100%; min-height: 400px;resize: vertical;}
 p { color: #727272; } 
 ul{list-style:none;}
+ul.estilo{list-style: circle;}
 
 .a-post{color: #727272;}
 .a-post:hover,.a-post:active,.a-post:focus{color: #009688;}
@@ -44,6 +55,21 @@ ul{list-style:none;}
     padding: .5em 1em;
     border: 1px solid #B6B6B6;
     border-radius: 4px;
+}
+
+.btn-circle{
+    text-align: center;
+    overflow: hidden;
+    width: 37px;
+    height: 37px;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.btn-circle:active , .btn-circle:hover, .btn-circle:focus{
+    border: none;
+    border-color: none;
 }
 .btn-default {
     color: #fff;
@@ -144,7 +170,7 @@ ul{list-style:none;}
     text-decoration: none;
     background-color: #00796B;
 }
-
+.delete{}
 .fondo-arti-post{
     background-color: #B2DFDB;
     border-radius: .4em;
@@ -376,6 +402,22 @@ i.ico-align{position: relative; bottom: -.2em;}
 .navbar-inverse .navbar-nav > .open > a:hover {
     color: #FFF;
     background-color: #00796B;
+}
+
+.pagination>li>a, .pagination>li>span {
+    color: #009688;
+}
+.pagination>.active>a, 
+.pagination>.active>a:focus, 
+.pagination>.active>a:hover, 
+.pagination>.active>span, 
+.pagination>.active>span:focus, 
+.pagination>.active>span:hover {
+    z-index: 2;
+    color: #fff;
+    cursor: default;
+    background-color: #009688;
+    border-color: #009688;
 }
 
 .shadow-title{text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);}

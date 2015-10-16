@@ -17,7 +17,7 @@
        <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
          <ul class="nav navbar-nav">
            <li @if(Route::is('frontend.index')) class="active" @endif><a href="{!! route('frontend.index') !!}">Inicio <span class="sr-only">(current)</span></a></li>
-           <li @if(Route::is('procedures.index')) class="active" @endif><a href="{!! route('procedures.index') !!}">Procedimientos</a></li>
+           <li @if(Route::is('procedures.index')) class="active" @endif><a href="{!! route('procedures.index' ) !!}">Procedimientos</a></li>
            <li @if(Route::is('services.index')) class="active" @endif><a href="{!! route('services.index') !!}">Servicios</a></li>
            <li class="dropdown">
              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administración de Saldos<span class="caret"></span></a>

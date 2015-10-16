@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 
 use Autoservicios\Http\Requests;
 use Autoservicios\Http\Controllers\Controller;
+use Autoservicios\Entities\Category;
+use Autoservicios\Entities\Article;
+use Autoservicios\Entities\Subcategory;
+use Session;
+use Redirect;
+use Illuminate\Support\Str as Str;
 
 class ArticlesController extends Controller
 {
@@ -16,7 +22,8 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        return view('backend.articles.admin-article');
+        $artis = Article::orderBy('id' , 'asc')->paginate(10);
+        return view('backend.articles.admin-article', compact('artis'));
     }
 
     /**
@@ -26,7 +33,8 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        return view('backend.articles.create-article');
+        $categories = Category::lists('category','id');
+        return view('backend.articles.create-article', compact('categories'));
     }
 
     /**
@@ -36,8 +44,20 @@ class ArticlesController extends Controller
      * @return Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $art =  $request['title'];
+        $slug = Str::slug($art);
+        $arti  = new Article;
+        $arti->title            =  $art;
+        $arti->category_id      =  $request['category_id'];
+        $arti->subcategory_id   =  $request['subcategory_id'];
+        $arti->developing       =  $request['developing'];
+        $arti->video            =  $arti->VideoAttribute($request['video']);
+        $arti->slug             =  $slug;
+        $arti->save();
+
+        Session::flash('message', 'Articulo '.$art.' agregado Correctamente.');
+        return Redirect::route('articles.create');
     }
 
     /**
@@ -46,9 +66,11 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
-    {
-        return view('frontend.articulo');
+    public function show($slug)
+    {   
+        $arti = Article::where('slug' , '=', $slug)->firstOrFail();
+        $sup  = Subcategory::all();
+        return view('frontend.articulo', compact('arti', 'sup'));
     }
 
     /**
@@ -57,9 +79,19 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        return view('backend.articles.edit-article');
+        $arti =  Article::findOrFail($id);
+
+        if ($request->ajax()) {
+            return response()->json(
+                $arti->toArray()
+            );
+        }
+
+        $categories = Category::lists('category','id');
+        $subcategories = Subcategory::lists('title','id');
+        return view('backend.articles.edit-article', ['arti' => $arti, 'categories' => $categories,'subcategories' => $subcategories]);
     }
 
     /**
@@ -71,7 +103,19 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $arti = Article::findOrFail($id);
+
+        if (!empty($request['video'])) {
+            $oldvideo = $arti->video;
+            if (\Storage::disk('local')->exists('video/'. $oldvideo)) {
+                \Storage::delete('video/'. $oldvideo);   
+            }
+        }
+        $arti->fill($request->all());
+        $arti->save();
+
+        Session::flash('message', 'Articulo editado correctamente!!');
+        return Redirect::route('articles.index');
     }
 
     /**
@@ -80,8 +124,22 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        $mensaje = 'Articulo Eliminado Correctamente!!';
+        $arti = Article::findOrFail($id);
+        $arti->delete();
+
+        $oldvideo = $arti->video;
+        if (\Storage::disk('local')->exists('video/'. $oldvideo)) {
+            \Storage::delete('video/'. $oldvideo);   
+        }
+
+        if ($request->ajax()) {
+            return response()->json($mensaje);
+        }
+
+        Session::flash('message', $mensaje);
+        return Redirect::route('articles.index');
     }
 }

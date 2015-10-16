@@ -1,7 +1,7 @@
 <div class="sidebar-module sidebar-module-inset col-xs-6 col-sm-12">
-    <h4>Servicios de Papeleía</h4>
+    <h4>{{ $arti->category->category }}</h4>
 
-    <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+    <p>E{{ $arti->category->descrip }}</p>
   <hr>
   </div>
   <div class="sidebar-module ul-blog col-xs-6 col-sm-12">
